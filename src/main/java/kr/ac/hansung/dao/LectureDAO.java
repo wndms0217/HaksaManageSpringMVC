@@ -62,7 +62,7 @@ public class LectureDAO {
 		// ? : place holder 인자로 받은 값을 넣음 (name)
 
 		// Object로 넘겨주기 의해 place holder(?)로 저장한 name을 Object배열에 저장하여 초기화
-		// 레코드를 DB에서 select할 때 Offer객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
+		// 레코드를 DB에서 select할 때 Lecture객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
 		return jdbcTemplateObject.query(sqlStatement, new Object[] { year, semester }, new LectureMapper());
 	
 	}
@@ -73,7 +73,7 @@ public class LectureDAO {
 		// ? : place holder 인자로 받은 값을 넣음 (name)
 
 		// Object로 넘겨주기 의해 place holder(?)로 저장한 name을 Object배열에 저장하여 초기화
-		// 레코드를 DB에서 select할 때 Offer객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
+		// 레코드를 DB에서 select할 때 Lecture객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
 		return jdbcTemplateObject.queryForObject(sqlStatement, new Object[] { name }, new LectureMapper());
 	}
 
