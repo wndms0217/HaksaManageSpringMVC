@@ -36,7 +36,7 @@ public class LecturesController {
 		return "bysemester";
 	}
 
-	// 학기별 검색 
+	// 구분별 검색 
 	@RequestMapping("/division")
 	public String showbydivisions(Model model) {
 
@@ -57,19 +57,19 @@ public class LecturesController {
 		List<Lecture> lectures = lecturesService.getLecture(year, semester);
 
 		// 저장된 모델이 아닌 새로운 모델로 초기화!
-		model.addAttribute("lectures", lectures); // 빼면 null Point Error!!
+		model.addAttribute("lectures", lectures);
 
 		return "detailview";
 	}
 
-	// 신청 항목 보
+	// 신청 항목 보기 
 	@RequestMapping("/lecturesapplied")
 	public String showLectures(Model model) {
 
 		List<Lecture> lectures = lecturesService.getApplyLectures();
 
 		// 저장된 모델이 아닌 새로운 모델로 초기화!
-		model.addAttribute("lectures", lectures); // 빼면 null Point Error!!
+		model.addAttribute("lectures", lectures);
 
 		return "lecturesapplied";
 	}
@@ -79,7 +79,7 @@ public class LecturesController {
 	public String applyLectures(Model model) {
 
 		// 저장된 모델이 아닌 새로운 모델로 초기화!
-		model.addAttribute("lecture", new Lecture()); // 빼면 null Point Error!!
+		model.addAttribute("lecture", new Lecture()); // null pointer exception!!
 
 		return "applylecture";
 	}
@@ -88,7 +88,6 @@ public class LecturesController {
 	@RequestMapping("/doapply")
 	public String Lectureapplied(Model model, @Valid Lecture lecture, BindingResult result) {
 
-		//if(model==null) model.addAttribute("lecture", new Lecture());
 		
 		if (result.hasErrors()) {
 			System.out.println("From data does validate.");
@@ -103,7 +102,7 @@ public class LecturesController {
 		else {
 			lecturesService.insert(lecture);
 
-			// lectureappied라는 jsp파일 이름 리턴
+			// applysuccess라는 jsp파일 이름 리턴
 			return "applysuccess";
 		}
 	}

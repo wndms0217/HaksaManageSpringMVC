@@ -83,7 +83,7 @@ public class LectureDAO {
 		// ? : place holder 인자로 받은 값을 넣음 (name)
 
 		// Object로 넘겨주기 의해 place holder(?)로 저장한 name을 Object배열에 저장하여 초기화
-		// 레코드를 DB에서 select할 때 Offer객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
+		// 레코드를 DB에서 select할 때 Lecture객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
 		return jdbcTemplateObject.query(sqlStatement, new LectureMapper());
 	}
 	// querying and returning a single object
@@ -91,16 +91,12 @@ public class LectureDAO {
 		String sqlStatement = "select * from application where name=?";
 		// ? : place holder 인자로 받은 값을 넣음 (name)
 
-		// Object로 넘겨주기 의해 place holder(?)로 저장한 name을 Object배열에 저장하여 초기화
-		// 레코드를 DB에서 select할 때 Offer객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
 		return jdbcTemplateObject.queryForObject(sqlStatement, new Object[] { name }, new LectureMapper());
 	}
-	public List<Lecture> getApplyLectures() { // Offer의 list를 넘겨줌
+	public List<Lecture> getApplyLectures() { // Lecture의 list를 넘겨줌
 		String sqlStatement = "select * from application";
 		// ? : place holder 인자로 받은 값을 넣음 (name)
 
-		// Object로 넘겨주기 의해 place holder(?)로 저장한 name을 Object배열에 저장하여 초기화
-		// 레코드를 DB에서 select할 때 Offer객체와 결과를 맵핑해줘야 함 (RowMapperd을 통해)
 		return jdbcTemplateObject.query(sqlStatement, new LectureMapper());
 	}
 	public boolean insert(Lecture lecture) {
@@ -141,7 +137,7 @@ public class LectureDAO {
 
 		String sqlStatement = "delete from lecture where id=?";
 
-		// 몇개가 update됐는지 갯수가 return
+		// 몇개가 delete됐는지 갯수가 return
 		return (jdbcTemplateObject.update(sqlStatement, new Object[] { id }) == 1);
 
 	}
